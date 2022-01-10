@@ -35,9 +35,23 @@ mutation DeleteSong($id: ID) {
 }
 `;
 
+const addLyricToSong = gql`
+mutation AddLyricToSong($content: String!, $songId: ID!) {
+  addLyricToSong(content: $content, songId: $songId) {
+    id
+    title
+    lyrics {
+      id
+      content
+    }
+  }
+}
+`;
+
 export {
   listSongs,
   getSong,
   addSong,
   deleteSong,
+  addLyricToSong
 };

@@ -34,6 +34,8 @@ module.exports = {
     'comma-dangle': 0,
     'max-len': ['error', { code: 120 }],
     'object-curly-newline': 0,
-    'react/prefer-stateless-function': 0
+    'react/prefer-stateless-function': 0,
+    'react/no-unused-state': 0,
+    'class-methods-use-this': 0
   },
 };
