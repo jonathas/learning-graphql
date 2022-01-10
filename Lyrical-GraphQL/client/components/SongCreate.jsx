@@ -14,7 +14,8 @@ class SongCreate extends Component {
     event.preventDefault();
     this.props.mutate({
       variables: { title: this.state.title },
-      refetchQueries: [{ query: fetchSongs }],
+      // refreshing like this because the query is associated with another component
+      refetchQueries: [{ query: fetchSongs }]
     })
       .then(() => hashHistory.push('/'));
   }

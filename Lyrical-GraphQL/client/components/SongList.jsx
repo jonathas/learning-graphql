@@ -4,6 +4,13 @@ import { Link } from 'react-router';
 import { fetchSongs, deleteSong } from '../graphql/queries-and-mutations';
 
 class SongList extends Component {
+  onSongDelete(id) {
+    // the methods here are populated by Apollo
+    this.props.mutate({ variables: { id } })
+      // refreshing like this because the query is associated with this same component
+      .then(() => this.props.data.refetch());
+  }
+
   renderSongs() {
     return this.props.data.songs.map(({ id, title }) => (
       <li key={id} className="collection-item">
