@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link, hashHistory } from 'react-router';
-import { fetchSongs, addSong } from '../graphql/queries-and-mutations';
+import { listSongs, addSong } from '../graphql/queries-and-mutations';
 
 class SongCreate extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class SongCreate extends Component {
     this.props.mutate({
       variables: { title: this.state.title },
       // refreshing like this because the query is associated with another component
-      refetchQueries: [{ query: fetchSongs }]
+      refetchQueries: [{ query: listSongs }]
     })
       .then(() => hashHistory.push('/'));
   }

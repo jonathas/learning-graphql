@@ -33,6 +33,7 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'comma-dangle': 0,
     'max-len': ['error', { code: 120 }],
-    'object-curly-newline': 0
+    'object-curly-newline': 0,
+    'react/prefer-stateless-function': 0
   },
 };

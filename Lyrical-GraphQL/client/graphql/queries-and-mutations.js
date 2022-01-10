@@ -1,8 +1,17 @@
 import gql from 'graphql-tag';
 
-const fetchSongs = gql`
+const listSongs = gql`
 {
   songs {
+    id
+    title
+  }
+}
+`;
+
+const getSong = gql`
+query GetSong($id: ID!) {
+  song(id: $id) {
     id
     title
   }
@@ -27,7 +36,8 @@ mutation DeleteSong($id: ID) {
 `;
 
 export {
-  fetchSongs,
+  listSongs,
+  getSong,
   addSong,
   deleteSong,
 };
