@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class SongCreate extends Component {
@@ -9,9 +10,8 @@ class SongCreate extends Component {
     }
 
     onSubmit(event) {
-        event.preventDefault();
-
-
+      event.preventDefault();
+      this.props.mutate({ variables: { title: this.state.title } });
     }
 
     render() {
@@ -30,4 +30,13 @@ class SongCreate extends Component {
     }
 }
 
-export default SongCreate;
+const mutation = gql`
+  mutation AddSong($title: String) {
+    addSong(title: $title) {
+      id
+      title
+    }
+  }
+`;
+
+export default graphql(mutation)(SongCreate);
