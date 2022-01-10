@@ -25,4 +25,7 @@ module.exports = {
       template: 'client/index.html',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 };

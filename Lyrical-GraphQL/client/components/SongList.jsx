@@ -4,15 +4,17 @@ import { Link } from 'react-router';
 import { fetchSongs, deleteSong } from '../graphql/queries-and-mutations';
 
 class SongList extends Component {
-  onSongDelete(id) {
-
-  }
-
   renderSongs() {
     return this.props.data.songs.map(({ id, title }) => (
       <li key={id} className="collection-item">
         {title}
-        <i className="material-icons" onClick={() => this.onSongDelete(id)}>
+        <i
+          className="material-icons"
+          role="button"
+          tabIndex="-1"
+          onClick={() => this.onSongDelete(id)}
+          onKeyPress={() => {}}
+        >
           delete
         </i>
       </li>

@@ -7,6 +7,12 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
   ],
+  settings: {
+    'import/extensions': [
+      '.js',
+      '.jsx'
+    ]
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -25,6 +31,8 @@ module.exports = {
     'react/prop-types': [0],
     'jsx-a11y/label-has-associated-control': 0,
     'react/destructuring-assignment': 0,
-    'comma-dangle': 0
+    'comma-dangle': 0,
+    'max-len': ['error', { code: 120 }],
+    'object-curly-newline': 0
   },
 };
