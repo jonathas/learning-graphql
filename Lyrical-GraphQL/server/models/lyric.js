@@ -15,7 +15,7 @@ LyricSchema.statics.like = function (id) {
   const Lyric = mongoose.model('lyric');
 
   return Lyric.findById(id)
-    .then((lyric) => {
+    .then(lyric => {
       lyric.likes += 1;
       return lyric.save();
     });

@@ -36,6 +36,7 @@ module.exports = {
     'object-curly-newline': 0,
     'react/prefer-stateless-function': 0,
     'react/no-unused-state': 0,
-    'class-methods-use-this': 0
+    'class-methods-use-this': 0,
+    'arrow-parens': ['error', 'as-needed']
   },
 };

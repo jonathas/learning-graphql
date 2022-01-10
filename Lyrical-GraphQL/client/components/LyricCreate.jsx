@@ -24,7 +24,7 @@ class LyricCreate extends Component {
         <label>Add a Lyric</label>
         <input
           value={this.state.content}
-          onChange={(event) => this.setState({ content: event.target.value })}
+          onChange={event => this.setState({ content: event.target.value })}
         />
       </form>
     );

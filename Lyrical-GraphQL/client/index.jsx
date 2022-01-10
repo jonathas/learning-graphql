@@ -9,7 +9,13 @@ import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
 
-const client = new ApolloClient({});
+/**
+ * @see https://www.apollographql.com/docs/react/caching/cache-configuration/
+ */
+const client = new ApolloClient({
+  // identifying pieces of data in the Apollo store. Can be used instead of refetchQueries and refetch()
+  dataIdFromObject: o => o.id
+});
 
 function Root() {
   return (

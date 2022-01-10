@@ -16,7 +16,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${dbAddress}:${dbPort}/${dbName}`);
 mongoose.connection
   .once('open', () => logger.info('Connected to MongoDB instance.'))
-  .on('error', (error) => logger.error('Error connecting to MongoDB:', error));
+  .on('error', error => logger.error('Error connecting to MongoDB:', error));
 
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
