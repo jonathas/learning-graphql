@@ -1,0 +1,15 @@
+version: "3"
+services:
+    db:
+        image: mongo:4.4.12-rc1-focal
+        container_name: lyrical-db
+        hostname: lyrical-db
+        volumes:
+            - ./server/mongo:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            - lyrical-network
+
+networks:
+    lyrical-network:
