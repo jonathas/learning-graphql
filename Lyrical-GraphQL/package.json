@@ -8,7 +8,8 @@
     "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
   },
   "scripts": {
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.js --ignore client",
+    "lint": "eslint --fix ."
   },
   "author": "",
   "license": "ISC",
@@ -26,12 +27,14 @@
     "express-graphql": "^0.6.1",
     "express-session": "^1.15.0",
     "graphql": "^0.8.2",
+    "graphql-tag": "^2.12.6",
     "html-webpack-plugin": "^2.26.0",
     "lodash": "^4.17.4",
     "mongoose": "^6.1.5",
     "nodemon": "*",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "pino": "^7.6.2",
     "react": "15.4.2",
     "react-apollo": "^0.9.0",
     "react-dom": "15.4.2",
@@ -39,5 +42,13 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }

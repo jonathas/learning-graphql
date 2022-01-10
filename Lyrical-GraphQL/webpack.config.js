@@ -1,28 +1,28 @@
-const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './client/index.jsx',
   output: {
     path: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         use: 'babel-loader',
-        test: /\.js$/,
-        exclude: /node_modules/
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
       },
       {
         use: ['style-loader', 'css-loader'],
-        test: /\.css$/
-      }
-    ]
+        test: /\.css$/,
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html'
-    })
-  ]
+      template: 'client/index.html',
+    }),
+  ],
 };
