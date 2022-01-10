@@ -17,6 +17,7 @@ query GetSong($id: ID!) {
     lyrics {
       id
       content
+      likes
     }
   }
 }
@@ -52,10 +53,20 @@ mutation AddLyricToSong($content: String!, $songId: ID!) {
 }
 `;
 
+const likeLyric = gql`
+mutation LikeLyric($id: ID!) {
+  likeLyric(id: $id) {
+    id
+    likes
+  }
+}
+`;
+
 export {
   listSongs,
   getSong,
   addSong,
   deleteSong,
-  addLyricToSong
+  addLyricToSong,
+  likeLyric
 };
