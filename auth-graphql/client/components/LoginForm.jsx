@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import AuthForm from './AuthForm';
 import { graphql } from 'react-apollo';
 import { login, getCurrentUser } from '../graphql/queries-and-mutations';
+import { hashHistory } from 'react-router';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = { errors: [] };
+  }
+
+  /**
+   * this.props => the old, current set of props
+   * nextProps => the next set of props that will be in place when the component rerenders
+   */
+  componentWillUpdate(nextProps) {
+    if (!this.props.data.user && nextProps.data.user) {
+      // user was not logged in before, but just logged in
+      hashHistory.push('/dashboard');
+    }
   }
 
   onSubmit({ email, password }) {
@@ -32,4 +44,6 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(login)(LoginForm);
+export default graphql(getCurrentUser)(
+  graphql(login)(LoginForm)
+);
