@@ -9,6 +9,15 @@ const currentUser = gql`
   }
 `;
 
+const login = gql`
+mutation Login($email: String, $password: String) {
+  login(email: $email, password: $password) {
+    id
+    email
+  }
+}
+`;
+
 const logout = gql`
 mutation {
   logout {
@@ -20,5 +29,6 @@ mutation {
 
 export {
   currentUser,
+  login,
   logout
 };
