@@ -24,7 +24,7 @@ module.exports = {
     'react',
   ],
   rules: {
-    'func-names': ['error', 'never'],
+    'func-names': ['error', 'as-needed'],
     'no-param-reassign': [0],
     'import/order': [0],
     'global-require': [0],
