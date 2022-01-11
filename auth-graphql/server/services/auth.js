@@ -47,36 +47,43 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 // Notice the Promise created in the second 'then' statement.  This is done
 // because Passport only supports callbacks, while GraphQL only supports promises
 // for async code!  Awkward!
-function signup({ email, password, req }) {
+const signup = async ({ email, password, req }) => {
   const user = new User({ email, password });
   if (!email || !password) { throw new Error('You must provide an email and password.'); }
 
-  return User.findOne({ email })
-    .then(existingUser => {
-      if (existingUser) { throw new Error('Email in use'); }
-      return user.save();
-    })
-    .then(user => new Promise((resolve, reject) => {
-      req.logIn(user, err => {
-        if (err) { reject(err); }
-        resolve(user);
-      });
-    }));
-}
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new Error('Email in use');
+  }
+  await user.save();
+
+  return new Promise((resolve, reject) => {
+    req.logIn(user, err => {
+      if (err) {
+        reject(err);
+      }
+      resolve(user);
+    });
+  });
+};
 
 // Logs in a user.  This will invoke the 'local-strategy' defined above in this
 // file. Notice the strange method signature here: the 'passport.authenticate'
 // function returns a function, as its indended to be used as a middleware with
 // Express.  We have another compatibility layer here to make it work nicely with
 // GraphQL, as GraphQL always expects to see a promise for handling async code.
-function login({ email, password, req }) {
-  return new Promise((resolve, reject) => {
-    passport.authenticate('local', (err, user) => {
-      if (!user) { reject(new Error('Invalid credentials.')); }
+const login = ({ email, password, req }) => new Promise((resolve, reject) => {
+  passport.authenticate('local', (err, user) => {
+    if (!user) { reject(new Error('Invalid credentials.')); }
 
-      req.login(user, () => resolve(user));
-    })({ body: { email, password } });
-  });
-}
+    req.login(user, () => resolve(user));
+  })({ body: { email, password } });
+});
 
-module.exports = { signup, login };
+const logout = req => {
+  const { user } = req;
+  req.logout();
+  return user;
+};
+
+module.exports = { signup, login, logout };
