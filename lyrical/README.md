@@ -1,4 +1,6 @@
-# Lyrical-GraphQL
+# Lyrical GraphQL
+
+Code examples created while learning GraphQL with Node.js, React and Apollo.
 
 Based on a [GraphQL course](https://www.udemy.com/course/graphql-with-react-course) on Udemy.com
 

@@ -1,4 +1,6 @@
-# auth-graphql
+# Auth GraphQL
+
+GraphQL with Node.js, React and Apollo.
 
 Based on a [GraphQL course](https://www.udemy.com/course/graphql-with-react-course) on Udemy.com
 
@@ -20,4 +22,18 @@ then:
 
 ```bash
 db.createUser({ user: 'example', pwd: 'mypassword', roles: [{ role: "userAdminAnyDatabase", db: "admin" }, { role: "readWriteAnyDatabase", db: "admin" }] });
+```
+
+## Running it
+
+Install the packages:
+
+```bash
+yarn
+```
+
+Start:
+
+```bash
+yarn dev
 ```
