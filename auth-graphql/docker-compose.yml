@@ -1,0 +1,15 @@
+version: "3"
+services:
+    db:
+        image: mongo:4.4.12-rc1-focal
+        container_name: auth-graphql-db
+        hostname: auth-graphql-db
+        volumes:
+            - ./server/mongo:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            - auth-graphql-network
+
+networks:
+    auth-graphql-network:

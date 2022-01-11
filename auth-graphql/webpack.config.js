@@ -1,8 +1,8 @@
-const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './client/index.jsx',
   output: {
     path: '/',
     filename: 'bundle.js'
@@ -11,7 +11,7 @@ module.exports = {
     rules: [
       {
         use: 'babel-loader',
-        test: /\.js$/,
+        test: /\.jsx$/,
         exclude: /node_modules/
       }
     ]
@@ -20,5 +20,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'client/index.html'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 };

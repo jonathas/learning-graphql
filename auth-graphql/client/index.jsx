@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Root = () => {
+function Root() {
   return (
     <div>
       Auth Starter
     </div>
   );
-};
+}
 
 ReactDOM.render(<Root />, document.querySelector('#root'));

@@ -1,18 +1,22 @@
 const express = require('express');
-const models = require('./models');
+const logger = require('pino')();
+require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
-const passportConfig = require('./services/auth');
+require('./services/auth');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema/schema');
 
 // Create a new Express application
 const app = express();
 
-// Replace with your mongoLab URI
-const MONGO_URI = '';
+const dbAddress = process.env.DB_HOST || '127.0.0.1';
+const dbPort = process.env.DB_PORT || 27017;
+const dbName = 'auth-graphql';
+
+const MONGO_URI = `mongodb://${dbAddress}:${dbPort}/${dbName}`;
 
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
@@ -21,8 +25,8 @@ mongoose.Promise = global.Promise;
 // on success or failure
 mongoose.connect(MONGO_URI);
 mongoose.connection
-    .once('open', () => console.log('Connected to MongoLab instance.'))
-    .on('error', error => console.log('Error connecting to MongoLab:', error));
+  .once('open', () => logger.info('Connected to MongoLab instance.'))
+  .on('error', error => logger.error('Error connecting to MongoLab:', error));
 
 // Configures express to use sessions.  This places an encrypted identifier
 // on the users cookie.  When a user makes a request, this middleware examines
@@ -57,7 +61,8 @@ app.use('/graphql', expressGraphQL({
 // a single bundle.js output of all of our client side Javascript
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
-const webpackConfig = require('../webpack.config.js');
+const webpackConfig = require('../webpack.config');
+
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
 module.exports = app;
